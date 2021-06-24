@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="0.49438202" branch-rate="0" lines-covered="44" lines-valid="89" branches-covered="0" branches-valid="0" complexity="0" version="" timestamp="1624513374188">
+	<packages>
+		<package name="authorizer/cmd/root" line-rate="0.73913044" branch-rate="0" complexity="0" line-count="23" line-hits="17">
+			<classes>
+				<class name="-" filename="cmd/root/application.go" line-rate="0.73913044" branch-rate="0" complexity="0" line-count="23" line-hits="17">
+					<methods>
+						<method name="Execute" signature="" line-rate="0.73913044" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="21" hits="1"></line>
+								<line number="23" hits="1"></line>
+								<line number="24" hits="1"></line>
+								<line number="26" hits="1"></line>
+								<line number="28" hits="1"></line>
+								<line number="30" hits="1"></line>
+								<line number="32" hits="1"></line>
+								<line number="33" hits="1"></line>
+								<line number="34" hits="0"></line>
+								<line number="37" hits="1"></line>
+								<line number="38" hits="1"></line>
+								<line number="39" hits="0"></line>
+								<line number="41" hits="0"></line>
+								<line number="45" hits="1"></line>
+								<line number="47" hits="1"></line>
+								<line number="48" hits="1"></line>
+								<line number="49" hits="0"></line>
+								<line number="52" hits="1"></line>
+								<line number="53" hits="1"></line>
+								<line number="54" hits="0"></line>
+								<line number="56" hits="0"></line>
+								<line number="60" hits="1"></line>
+								<line number="63" hits="1"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="1"></line>
+						<line number="23" hits="1"></line>
+						<line number="24" hits="1"></line>
+						<line number="26" hits="1"></line>
+						<line number="28" hits="1"></line>
+						<line number="30" hits="1"></line>
+						<line number="32" hits="1"></line>
+						<line number="33" hits="1"></line>
+						<line number="34" hits="0"></line>
+						<line number="37" hits="1"></line>
+						<line number="38" hits="1"></line>
+						<line number="39" hits="0"></line>
+						<line number="41" hits="0"></line>
+						<line number="45" hits="1"></line>
+						<line number="47" hits="1"></line>
+						<line number="48" hits="1"></line>
+						<line number="49" hits="0"></line>
+						<line number="52" hits="1"></line>
+						<line number="53" hits="1"></line>
+						<line number="54" hits="0"></line>
+						<line number="56" hits="0"></line>
+						<line number="60" hits="1"></line>
+						<line number="63" hits="1"></line>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="authorizer/internal/app/service" line-rate="0.31111112" branch-rate="0" complexity="0" line-count="45" line-hits="14">
+			<classes>
+				<class name="-" filename="internal/app/service/readers.go" line-rate="1" branch-rate="0" complexity="0" line-count="14" line-hits="14">
+					<methods>
+						<method name="ReadCreateAccount" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="14" hits="1"></line>
+								<line number="16" hits="1"></line>
+								<line number="17" hits="1"></line>
+								<line number="19" hits="1"></line>
+								<line number="22" hits="1"></line>
+								<line number="23" hits="1"></line>
+								<line number="26" hits="1"></line>
+							</lines>
+						</method>
+						<method name="ReadProcessTransaction" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="31" hits="1"></line>
+								<line number="33" hits="1"></line>
+								<line number="34" hits="1"></line>
+								<line number="36" hits="1"></line>
+								<line number="39" hits="1"></line>
+								<line number="40" hits="1"></line>
+								<line number="43" hits="1"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="14" hits="1"></line>
+						<line number="16" hits="1"></line>
+						<line number="17" hits="1"></line>
+						<line number="19" hits="1"></line>
+						<line number="22" hits="1"></line>
+						<line number="23" hits="1"></line>
+						<line number="26" hits="1"></line>
+						<line number="31" hits="1"></line>
+						<line number="33" hits="1"></line>
+						<line number="34" hits="1"></line>
+						<line number="36" hits="1"></line>
+						<line number="39" hits="1"></line>
+						<line number="40" hits="1"></line>
+						<line number="43" hits="1"></line>
+					</lines>
+				</class>
+				<class name="-" filename="internal/app/service/service.go" line-rate="0" branch-rate="0" complexity="0" line-count="1" line-hits="0">
+					<methods>
+						<method name="New" signature="" line-rate="0" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="37" hits="0"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="37" hits="0"></line>
+					</lines>
+				</class>
+				<class name="Service" filename="internal/app/service/service.go" line-rate="0" branch-rate="0" complexity="0" line-count="30" line-hits="0">
+					<methods>
+						<method name="CreateAccount" signature="" line-rate="0" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="41" hits="0"></line>
+								<line number="43" hits="0"></line>
+								<line number="44" hits="0"></line>
+								<line number="45" hits="0"></line>
+								<line number="46" hits="0"></line>
+								<line number="48" hits="0"></line>
+								<line number="51" hits="0"></line>
+								<line number="52" hits="0"></line>
+								<line number="54" hits="0"></line>
+								<line number="57" hits="0"></line>
+								<line number="59" hits="0"></line>
+							</lines>
+						</method>
+						<method name="ProcessTransaction" signature="" line-rate="0" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="63" hits="0"></line>
+								<line number="65" hits="0"></line>
+								<line number="66" hits="0"></line>
+								<line number="68" hits="0"></line>
+								<line number="69" hits="0"></line>
+								<line number="71" hits="0"></line>
+								<line number="73" hits="0"></line>
+								<line number="76" hits="0"></line>
+								<line number="77" hits="0"></line>
+								<line number="79" hits="0"></line>
+								<line number="81" hits="0"></line>
+								<line number="84" hits="0"></line>
+								<line number="85" hits="0"></line>
+								<line number="86" hits="0"></line>
+								<line number="88" hits="0"></line>
+								<line number="90" hits="0"></line>
+								<line number="93" hits="0"></line>
+								<line number="94" hits="0"></line>
+								<line number="96" hits="0"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="41" hits="0"></line>
+						<line number="43" hits="0"></line>
+						<line number="44" hits="0"></line>
+						<line number="45" hits="0"></line>
+						<line number="46" hits="0"></line>
+						<line number="48" hits="0"></line>
+						<line number="51" hits="0"></line>
+						<line number="52" hits="0"></line>
+						<line number="54" hits="0"></line>
+						<line number="57" hits="0"></line>
+						<line number="59" hits="0"></line>
+						<line number="63" hits="0"></line>
+						<line number="65" hits="0"></line>
+						<line number="66" hits="0"></line>
+						<line number="68" hits="0"></line>
+						<line number="69" hits="0"></line>
+						<line number="71" hits="0"></line>
+						<line number="73" hits="0"></line>
+						<line number="76" hits="0"></line>
+						<line number="77" hits="0"></line>
+						<line number="79" hits="0"></line>
+						<line number="81" hits="0"></line>
+						<line number="84" hits="0"></line>
+						<line number="85" hits="0"></line>
+						<line number="86" hits="0"></line>
+						<line number="88" hits="0"></line>
+						<line number="90" hits="0"></line>
+						<line number="93" hits="0"></line>
+						<line number="94" hits="0"></line>
+						<line number="96" hits="0"></line>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="authorizer/internal/app/storage" line-rate="0.61904764" branch-rate="0" complexity="0" line-count="21" line-hits="13">
+			<classes>
+				<class name="InMemory" filename="internal/app/storage/inmemory.go" line-rate="0.61904764" branch-rate="0" complexity="0" line-count="21" line-hits="13">
+					<methods>
+						<method name="GenerateAccountID" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="42" hits="1"></line>
+							</lines>
+						</method>
+						<method name="CreateAccount" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="48" hits="1"></line>
+								<line number="50" hits="1"></line>
+								<line number="57" hits="1"></line>
+								<line number="61" hits="1"></line>
+								<line number="69" hits="1"></line>
+								<line number="71" hits="1"></line>
+								<line number="73" hits="1"></line>
+								<line number="75" hits="1"></line>
+								<line number="77" hits="1"></line>
+							</lines>
+						</method>
+						<method name="ExecuteTransaction" signature="" line-rate="0" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="81" hits="0"></line>
+								<line number="83" hits="0"></line>
+								<line number="90" hits="0"></line>
+								<line number="91" hits="0"></line>
+								<line number="93" hits="0"></line>
+								<line number="95" hits="0"></line>
+								<line number="96" hits="0"></line>
+								<line number="98" hits="0"></line>
+							</lines>
+						</method>
+						<method name="GetAccount" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="103" hits="1"></line>
+								<line number="110" hits="1"></line>
+							</lines>
+						</method>
+						<method name="GetTransactions" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="115" hits="1"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="42" hits="1"></line>
+						<line number="48" hits="1"></line>
+						<line number="50" hits="1"></line>
+						<line number="57" hits="1"></line>
+						<line number="61" hits="1"></line>
+						<line number="69" hits="1"></line>
+						<line number="71" hits="1"></line>
+						<line number="73" hits="1"></line>
+						<line number="75" hits="1"></line>
+						<line number="77" hits="1"></line>
+						<line number="81" hits="0"></line>
+						<line number="83" hits="0"></line>
+						<line number="90" hits="0"></line>
+						<line number="91" hits="0"></line>
+						<line number="93" hits="0"></line>
+						<line number="95" hits="0"></line>
+						<line number="96" hits="0"></line>
+						<line number="98" hits="0"></line>
+						<line number="103" hits="1"></line>
+						<line number="110" hits="1"></line>
+						<line number="115" hits="1"></line>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+	<sources>
+		<source>/home/carlos/go/src/authorizer</source>
+	</sources>
+</coverage>
