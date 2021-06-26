@@ -51,7 +51,7 @@ func (s *Service) CreateAccount(ca CreateAccount) (response TransactionResponse,
 	response.Account = ca.Account
 
 	account := s.storage.GetAccount(ca.Account.Id)
-	if account.Active {
+	if account.ActiveCard {
 		log.Errorf("error:%s id:%d", errors.ViolationAccountAlreadyExists, ca.Account.Id)
 		response.Violations = append(response.Violations, errors.ViolationAccountAlreadyExists)
 

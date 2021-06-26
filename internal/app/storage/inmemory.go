@@ -23,7 +23,6 @@ type InMemory struct {
 type Account struct {
 	AccountID      int // not needed by the documentation but I considered it was a good practice to have it in here
 	ActiveCard     bool
-	ActiveAccount  bool // also not a needed field, but it is good if we need a logical delete
 	AvailableLimit int
 }
 
@@ -59,7 +58,6 @@ func (im *InMemory) CreateAccount(a model.Account) error {
 
 	account := Account{
 		AccountID:      a.Id,
-		ActiveAccount:  true,
 		ActiveCard:     a.ActiveCard,
 		AvailableLimit: a.AvailableLimit,
 	}
@@ -88,7 +86,6 @@ func (im *InMemory) ExecuteTransaction(a model.Account, t model.Transaction) (mo
 	account := Account{
 		AccountID:      a.Id,
 		ActiveCard:     a.ActiveCard,
-		ActiveAccount:  a.Active,
 		AvailableLimit: a.AvailableLimit,
 	}
 
@@ -105,7 +102,6 @@ func (im *InMemory) GetAccount(accountID int) model.Account {
 		Id:             accountID,
 		ActiveCard:     im.Account[accountID].ActiveCard,
 		AvailableLimit: im.Account[accountID].AvailableLimit,
-		Active:         im.Account[accountID].ActiveAccount,
 	}
 
 	return account

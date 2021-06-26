@@ -1,19 +1,53 @@
 package service
 
-import "testing"
+import (
+	"authorizer/internal/app/model"
+	"testing"
+)
 
 func Test_isActive(t *testing.T) {
 	type args struct {
 		input ruleInput
 	}
-	tests:= []struct {
+
+	tests := []struct {
 		name  string
 		args  args
 		want  bool
 		want1 string
 	}{
-		{ "success",args{}}
+		{"success",
+			args{
+				ruleInput{
+					Transaction:      model.Transaction{},
+					PastTransactions: nil,
+					Account: model.Account{
+						Id:             1,
+						ActiveCard:     true,
+						AvailableLimit: 0,
+					},
+				},
+			},
+			true,
+			"",
+		},
+		{"notActive",
+			args{
+				ruleInput{
+					Transaction:      model.Transaction{},
+					PastTransactions: nil,
+					Account: model.Account{
+						Id:             1,
+						ActiveCard:     false,
+						AvailableLimit: 0,
+					},
+				},
+			},
+			false,
+			"card-not-active",
+		},
 	}
+
 
 		for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

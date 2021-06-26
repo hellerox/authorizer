@@ -11,6 +11,5 @@ type Transaction struct {
 type Account struct {
 	Id             int  `json:"-"`
 	ActiveCard     bool `json:"activeCard"`
-	Active         bool `json:"-"`
 	AvailableLimit int  `json:"availableLimit"`
 }
