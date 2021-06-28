@@ -81,7 +81,7 @@ func (im *InMemory) ExecuteTransaction(a model.Account, t model.Transaction) (mo
 		Time:          t.Time,
 	}
 
-	a.AvailableLimit += t.Amount
+	a.AvailableLimit -= t.Amount
 
 	account := Account{
 		AccountID:      a.Id,
@@ -122,4 +122,9 @@ func (im *InMemory) GetTransactions(accountID int) []model.Transaction {
 	}
 
 	return response
+}
+
+// Close closes connection to DB
+func (im *InMemory) Close() error {
+	return nil
 }

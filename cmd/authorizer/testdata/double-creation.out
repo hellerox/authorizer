@@ -1,0 +1,2 @@
+{"account":{"activeCard":true,"availableLimit":10111100},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":10111100},"violations":["account-already-initialized"]}

@@ -1,15 +1,16 @@
 package cmd
 
 import (
-	"authorizer/internal/app/errors"
-	"authorizer/internal/app/model"
-	"authorizer/internal/app/service"
 	"bytes"
 	"io"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"authorizer/internal/app/errors"
+	"authorizer/internal/app/model"
+	"authorizer/internal/app/service"
 )
 
 type MockAuthorizer struct {
@@ -26,7 +27,6 @@ func (m *MockAuthorizer) CreateAccount(ca service.CreateAccount) (response servi
 	account := model.Account{
 		Id:             1,
 		ActiveCard:     true,
-		Active:         true,
 		AvailableLimit: 10,
 	}
 
@@ -43,7 +43,6 @@ func (m *MockAuthorizer) ProcessTransaction(pt service.ProcessTransaction) (
 		account := model.Account{
 			Id:             1,
 			ActiveCard:     true,
-			Active:         true,
 			AvailableLimit: 100,
 		}
 
@@ -55,7 +54,6 @@ func (m *MockAuthorizer) ProcessTransaction(pt service.ProcessTransaction) (
 	account := model.Account{
 		Id:             1,
 		ActiveCard:     true,
-		Active:         true,
 		AvailableLimit: 10,
 	}
 
@@ -82,34 +80,34 @@ func TestExecute(t *testing.T) {
 				auth:   &MockAuthorizer{},
 				reader: strings.NewReader("abcde"),
 			},
-			"unknown-command \n"},
+			"unknown-command\n"},
 		{"createAccount",
 			new(bytes.Buffer),
 			args{
 				auth:   &MockAuthorizer{},
 				reader: strings.NewReader("{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } }"),
 			},
-			"{\"account\":{\"activeCard\":true,\"availableLimit\":10},\"violations\":[]} \n"},
+			"{\"account\":{\"activeCard\":true,\"availableLimit\":10},\"violations\":[]}\n"},
 		{"doubleCreateAccount",
 			new(bytes.Buffer),
 			args{
 				auth: &MockAuthorizer{},
-				reader: strings.NewReader("{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } } \n" +
+				reader: strings.NewReader("{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } }\n" +
 					"						{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } }"),
 			},
-			"{\"account\":{\"activeCard\":true,\"availableLimit\":10},\"violations\":[]} \n" +
-				"{\"account\":{\"activeCard\":false,\"availableLimit\":0},\"violations\":[\"account-already-initialized\"]} \n"},
+			"{\"account\":{\"activeCard\":true,\"availableLimit\":10},\"violations\":[]}\n" +
+				"{\"account\":{\"activeCard\":false,\"availableLimit\":0},\"violations\":[\"account-already-initialized\"]}\n"},
 		{"createAndProcess",
 			new(bytes.Buffer),
 			args{
 				auth: &MockAuthorizer{},
-				reader: strings.NewReader("{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } } \n" +
-					"{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } } \n" +
-					"{ \"transaction\": { \"merchant\": \"Habbib's\", \"amount\": 90, \"time\": \"2019-02-13T11:00:00.000Z\" } } \n"),
+				reader: strings.NewReader("{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } }\n" +
+					"{\"account\": { \"activeCard\": true, \"availableLimit\": 10 } }\n" +
+					"{ \"transaction\": { \"merchant\": \"Habbib's\", \"amount\": 90, \"time\": \"2019-02-13T11:00:00.000Z\" } }\n"),
 			},
-			"{\"account\":{\"activeCard\":true,\"availableLimit\":10},\"violations\":[]} \n" +
-				"{\"account\":{\"activeCard\":false,\"availableLimit\":0},\"violations\":[\"account-already-initialized\"]} \n" +
-				"{\"account\":{\"activeCard\":true,\"availableLimit\":100},\"violations\":[]} \n"},
+			"{\"account\":{\"activeCard\":true,\"availableLimit\":10},\"violations\":[]}\n" +
+				"{\"account\":{\"activeCard\":false,\"availableLimit\":0},\"violations\":[\"account-already-initialized\"]}\n" +
+				"{\"account\":{\"activeCard\":true,\"availableLimit\":100},\"violations\":[]}\n"},
 	}
 
 	for _, tt := range tests {

@@ -17,7 +17,6 @@ func TestReadCreateAccount(t *testing.T) {
 	account := model.Account{
 		Id:             1,
 		ActiveCard:     true,
-		Active:         false,
 		AvailableLimit: 1010,
 	}
 
@@ -26,7 +25,6 @@ func TestReadCreateAccount(t *testing.T) {
 	emptyAccount := model.Account{
 		Id:             1,
 		ActiveCard:     false,
-		Active:         false,
 		AvailableLimit: 0,
 	}
 

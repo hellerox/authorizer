@@ -169,7 +169,6 @@ func TestInMemory_GetAccount(t *testing.T) {
 					1: {
 						AccountID:      1,
 						ActiveCard:     true,
-						ActiveAccount:  true,
 						AvailableLimit: 11,
 					},
 				},
@@ -178,7 +177,6 @@ func TestInMemory_GetAccount(t *testing.T) {
 			model.Account{
 				Id:             1,
 				ActiveCard:     true,
-				Active:         true,
 				AvailableLimit: 11,
 			},
 		},
@@ -191,7 +189,6 @@ func TestInMemory_GetAccount(t *testing.T) {
 			model.Account{
 				Id:             1,
 				ActiveCard:     false,
-				Active:         false,
 				AvailableLimit: 0,
 			},
 		},
@@ -207,6 +204,24 @@ func TestInMemory_GetAccount(t *testing.T) {
 
 			got := im.GetAccount(tt.args.accountID)
 			assert.Equal(t, tt.want, got)
+		})
+	}
+}
+
+func TestInMemory_Close(t *testing.T) {
+	tests := []struct {
+		name    string
+		wantErr bool
+	}{
+		{"success", false},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			im := InMemory{}
+			if err := im.Close(); (err != nil) != tt.wantErr {
+				t.Errorf("Close() error = %v, wantErr %v", err, tt.wantErr)
+			}
 		})
 	}
 }

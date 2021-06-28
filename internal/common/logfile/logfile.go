@@ -16,4 +16,6 @@ func Init() {
 	}
 
 	log.SetOutput(f)
+
+	log.Println("---------------")
 }

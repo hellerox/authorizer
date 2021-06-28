@@ -1,0 +1,10 @@
+{"account": { "activeCard": true, "availableLimit": 1000 } }
+{ "transaction": { "merchant": "Habbib's", "amount": 100, "time": "2017-02-10T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's2", "amount": 100, "time": "2017-02-13T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's", "amount": 100, "time": "2018-02-10T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's2", "amount": 100, "time": "2018-02-13T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's", "amount": 100, "time": "2019-02-10T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's2", "amount": 100, "time": "2019-02-13T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's2", "amount": 1010, "time": "2019-02-14T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's2", "amount": 1010, "time": "2019-02-15T11:00:00.000Z" } }
+{ "transaction": { "merchant": "Habbib's2", "amount": 1010, "time": "2019-02-17T11:00:00.000Z" } }

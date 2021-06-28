@@ -1,0 +1,10 @@
+{"account":{"activeCard":true,"availableLimit":1000},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":900},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":800},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":700},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":600},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":500},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":400},"violations":[]}
+{"account":{"activeCard":true,"availableLimit":400},"violations":["insufficient-limit"]}
+{"account":{"activeCard":true,"availableLimit":400},"violations":["insufficient-limit"]}
+{"account":{"activeCard":true,"availableLimit":400},"violations":["insufficient-limit"]}

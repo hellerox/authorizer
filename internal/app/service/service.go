@@ -1,6 +1,8 @@
 package service
 
 import (
+	"authorizer/internal/app/service/rules"
+
 	log "github.com/sirupsen/logrus"
 
 	"authorizer/internal/app/errors"
@@ -9,7 +11,6 @@ import (
 
 type Service struct {
 	storage Storage
-	rules   []func(ruleInput) (bool, string)
 }
 
 type Storage interface {
@@ -17,6 +18,7 @@ type Storage interface {
 	GetAccount(aID int) model.Account
 	ExecuteTransaction(a model.Account, t model.Transaction) (model.Account, error)
 	GetTransactions(accountID int) []model.Transaction
+	Close() error
 }
 
 type CreateAccount struct {
@@ -34,16 +36,8 @@ type ProcessTransaction struct {
 }
 
 func New(storage Storage) *Service {
-	rules := []func(ruleInput) (bool, string){
-		isActive,
-		sufficientLimit,
-		doubleTransaction,
-		highFrequency,
-	}
-
 	return &Service{
 		storage: storage,
-		rules:   rules,
 	}
 }
 
@@ -53,6 +47,8 @@ func (s *Service) CreateAccount(ca CreateAccount) (response TransactionResponse,
 	account := s.storage.GetAccount(ca.Account.Id)
 	if account.ActiveCard {
 		log.Errorf("error:%s id:%d", errors.ViolationAccountAlreadyExists, ca.Account.Id)
+
+		response.Account = account
 		response.Violations = append(response.Violations, errors.ViolationAccountAlreadyExists)
 
 		return response, nil
@@ -75,18 +71,16 @@ func (s *Service) ProcessTransaction(tx ProcessTransaction) (response Transactio
 
 	pastTransactions := s.storage.GetTransactions(tx.AccountID)
 
-	ruleInput := ruleInput{
+	br := rules.BusinessRule{
 		Transaction:      tx.Transaction,
 		PastTransactions: pastTransactions,
 		Account:          accountFound,
 	}
 
-	for _, ruleFunc := range s.rules {
-		isValid, violation := ruleFunc(ruleInput)
-		if !isValid {
-			response.Violations = []string{violation}
-			return response, nil
-		}
+	isValid, violation := br.ExecuteRules()
+	if !isValid {
+		response.Violations = []string{violation}
+		return response, nil
 	}
 
 	account, err := s.storage.ExecuteTransaction(accountFound, tx.Transaction)

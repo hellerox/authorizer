@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-APPNAME="authorizer"
 export GO111MODULE=on
 
 set -o errexit
 set -o nounset
 
 if [ -z $APPNAME ]; then
-    echo "APPNAME must be set"
+    echo "$APPNAME  must be set"
     exit 1
 fi
 

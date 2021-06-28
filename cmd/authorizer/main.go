@@ -1,20 +1,29 @@
 package main
 
 import (
-	"authorizer/internal/app/service"
-	"authorizer/internal/app/storage"
+	"fmt"
 	"os"
 
-	log "github.com/sirupsen/logrus"
-
 	cmd "authorizer/cmd/root"
+	"authorizer/internal/app/service"
+	"authorizer/internal/app/storage"
 	"authorizer/internal/common/logfile"
 )
 
 func main() {
 	logfile.Init()
 
-	log.Println("--- starting app ---")
+	if len(os.Args) > 1 {
+		switch os.Args[1:][0] {
+		case "version":
+			fmt.Println("v1.0")
+
+		case "help":
+			fmt.Println("send file with transactions to stdin")
+		}
+
+		os.Exit(0)
+	}
 
 	// Initialize DB
 	db := storage.InMemory{}
@@ -24,7 +33,7 @@ func main() {
 
 	// Get input from stdin
 	stdin := os.Stdin
-	// return output to stdout
+	// Return output to stdout
 	stdout := os.Stdout
 
 	// Execute application
