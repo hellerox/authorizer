@@ -3,6 +3,7 @@
 package main
 
 import (
+	cmd2 "authorizer/internal/root"
 	"bytes"
 	"io/ioutil"
 	"os"
@@ -10,7 +11,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	cmd "authorizer/cmd/root"
 	"authorizer/internal/app/service"
 	"authorizer/internal/app/storage"
 )
@@ -44,7 +44,7 @@ func TestIntegration(t *testing.T) {
 				assert.NoError(t, err)
 			}
 
-			cmd.Execute(service, input, tt.writer)
+			cmd2.Execute(service, input, tt.writer)
 
 			expected, err := ioutil.ReadFile("testdata/" + tt.name + ".out")
 			if err != nil {

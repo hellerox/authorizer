@@ -1,0 +1,1 @@
+cat testdata/operations |  docker run -i authorizer

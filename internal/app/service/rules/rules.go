@@ -5,8 +5,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"authorizer/internal/app/errors"
 	"authorizer/internal/app/model"
+	"authorizer/internal/app/violations"
 )
 
 // BusinessRule contains the list of fields needed for business rules to take a decision
@@ -17,6 +17,7 @@ type BusinessRule struct {
 }
 
 // ExecuteRules lists and executes all the business rules
+// new Business Rules must be added in here in order to be executed
 func (br *BusinessRule) ExecuteRules() (bool, string) {
 	response, violation := br.isActive()
 	if !response {
@@ -44,8 +45,8 @@ func (br *BusinessRule) ExecuteRules() (bool, string) {
 // isActive verifies that your account has an active card
 func (br *BusinessRule) isActive() (bool, string) {
 	if !br.Account.ActiveCard {
-		log.Errorf("violation:%s id:%d", errors.ViolationCardNotActive, br.Account.Id)
-		return false, errors.ViolationCardNotActive
+		log.Errorf("violation:%s id:%d", violations.ViolationCardNotActive, br.Account.Id)
+		return false, violations.ViolationCardNotActive
 	}
 
 	return true, ""
@@ -55,9 +56,9 @@ func (br *BusinessRule) isActive() (bool, string) {
 // to execute the transaction
 func (br *BusinessRule) sufficientLimit() (bool, string) {
 	if (br.Account.AvailableLimit - br.Transaction.Amount) < 0 {
-		log.Errorf("violation:%s id:%d", errors.ViolationInsufficientLimit, br.Account.Id)
+		log.Errorf("violation:%s id:%d", violations.ViolationInsufficientLimit, br.Account.Id)
 
-		return false, errors.ViolationInsufficientLimit
+		return false, violations.ViolationInsufficientLimit
 	}
 
 	return true, ""
@@ -71,9 +72,9 @@ func (br *BusinessRule) doubleTransaction() (bool, string) {
 			if br.Transaction.Amount == pastTx.Amount &&
 				br.Transaction.Merchant == pastTx.Merchant &&
 				math.Abs(br.Transaction.Time.Sub(pastTx.Time).Minutes()) < 2 {
-				log.Errorf("violation:%s id:%d", errors.ViolationDoubledTransaction, br.Account.Id)
+				log.Errorf("violation:%s id:%d", violations.ViolationDoubledTransaction, br.Account.Id)
 
-				return false, errors.ViolationDoubledTransaction
+				return false, violations.ViolationDoubledTransaction
 			}
 		}
 	}
@@ -91,9 +92,9 @@ func (br *BusinessRule) highFrequency() (bool, string) {
 			if math.Abs(br.Transaction.Time.Sub(pastTx.Time).Minutes()) < 2 {
 				countInPeriod++
 				if countInPeriod == 2 {
-					log.Errorf("violation:%s id:%d", errors.ViolationHighFrequencySmallInterval, br.Account.Id)
+					log.Errorf("violation:%s id:%d", violations.ViolationHighFrequencySmallInterval, br.Account.Id)
 
-					return false, errors.ViolationHighFrequencySmallInterval
+					return false, violations.ViolationHighFrequencySmallInterval
 				}
 			}
 		}

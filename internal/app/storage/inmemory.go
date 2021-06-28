@@ -10,8 +10,8 @@ import (
 )
 
 // InMemory is my way to simulate a Database,
-// the "simple" version of the database has a table account and a table transaction
-// The PK of Account is Id even though it is not needed for this example, I added it to keep everything "clean"
+// this version of the database has a table account and a table transaction
+// The PK of Account is Id even though it is not needed for this example (we are using always ID 1)
 // Id is also the FK in Transaction to relate the transactions to the Account
 
 type InMemory struct {
@@ -21,17 +21,17 @@ type InMemory struct {
 
 // Account in this package represents the table of Accounts in the simulated DB
 type Account struct {
-	AccountID      int // not needed by the documentation but I considered it was a good practice to have it in here
+	Id             int
 	ActiveCard     bool
 	AvailableLimit int
 }
 
 // Transaction in this package represents the table of Transactions in the simulated DB
 type Transaction struct {
-	TransactionID uuid.UUID
-	Merchant      string
-	Amount        int
-	Time          time.Time
+	Id       uuid.UUID
+	Merchant string
+	Amount   int
+	Time     time.Time
 }
 
 // GenerateAccountID is the function to get the sequential ID for the accounts,
@@ -46,10 +46,10 @@ func (im *InMemory) CreateAccount(a model.Account) error {
 	log.Debugf("creation account: %+v", a)
 
 	t := Transaction{
-		TransactionID: uuid.New(),
-		Merchant:      "initial",
-		Amount:        a.AvailableLimit,
-		Time:          time.Now(),
+		Id:       uuid.New(),
+		Merchant: "initial",
+		Amount:   a.AvailableLimit,
+		Time:     time.Now(),
 	}
 
 	transactions := []Transaction{
@@ -57,7 +57,7 @@ func (im *InMemory) CreateAccount(a model.Account) error {
 	}
 
 	account := Account{
-		AccountID:      a.Id,
+		Id:             a.Id,
 		ActiveCard:     a.ActiveCard,
 		AvailableLimit: a.AvailableLimit,
 	}
@@ -73,18 +73,20 @@ func (im *InMemory) CreateAccount(a model.Account) error {
 	return nil
 }
 
+// ExecuteTransaction is the operation in storage that updates the availableLimit
+// and registers a new transaction in the transactionHistory
 func (im *InMemory) ExecuteTransaction(a model.Account, t model.Transaction) (model.Account, error) {
 	transaction := Transaction{
-		TransactionID: uuid.New(),
-		Merchant:      t.Merchant,
-		Amount:        t.Amount,
-		Time:          t.Time,
+		Id:       uuid.New(),
+		Merchant: t.Merchant,
+		Amount:   t.Amount,
+		Time:     t.Time,
 	}
 
 	a.AvailableLimit -= t.Amount
 
 	account := Account{
-		AccountID:      a.Id,
+		Id:             a.Id,
 		ActiveCard:     a.ActiveCard,
 		AvailableLimit: a.AvailableLimit,
 	}
@@ -96,7 +98,7 @@ func (im *InMemory) ExecuteTransaction(a model.Account, t model.Transaction) (mo
 	return a, nil
 }
 
-// GetAccount gets the info of the account using an Id
+// GetAccount gets the info of the account using the account ID
 func (im *InMemory) GetAccount(accountID int) model.Account {
 	account := model.Account{
 		Id:             accountID,
@@ -107,7 +109,7 @@ func (im *InMemory) GetAccount(accountID int) model.Account {
 	return account
 }
 
-// GetTransactions gets all the transactions related to an accountID
+// GetTransactions gets all the transactions related to an account ID
 func (im *InMemory) GetTransactions(accountID int) []model.Transaction {
 	response := []model.Transaction{}
 
@@ -124,7 +126,7 @@ func (im *InMemory) GetTransactions(accountID int) []model.Transaction {
 	return response
 }
 
-// Close closes connection to DB
+// Close closes connection to DB (not really needed for this abstraction of a DB)
 func (im *InMemory) Close() error {
 	return nil
 }

@@ -1,10 +1,10 @@
 package main
 
 import (
+	cmd2 "authorizer/internal/root"
 	"fmt"
 	"os"
 
-	cmd "authorizer/cmd/root"
 	"authorizer/internal/app/service"
 	"authorizer/internal/app/storage"
 	"authorizer/internal/common/logfile"
@@ -13,6 +13,7 @@ import (
 func main() {
 	logfile.Init()
 
+	// simple flow to respond to common arguments
 	if len(os.Args) > 1 {
 		switch os.Args[1:][0] {
 		case "version":
@@ -37,5 +38,5 @@ func main() {
 	stdout := os.Stdout
 
 	// Execute application
-	cmd.Execute(svc, stdin, stdout)
+	cmd2.Execute(svc, stdin, stdout)
 }

@@ -13,6 +13,6 @@ done
 echo "Running unit tests."
 
 # Generate tests report
-gotestsum  -- ./...; test ${PIPESTATUS[0]} -eq 0 || status=${PIPESTATUS[0]}
+gotestsum  -- -coverprofile=cover.out ./...; test ${PIPESTATUS[0]} -eq 0 || status=${PIPESTATUS[0]}
 
 exit ${status:-0}

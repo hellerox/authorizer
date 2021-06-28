@@ -93,16 +93,16 @@ func TestInMemory_GetTransactions(t *testing.T) {
 				History: map[int][]Transaction{
 					1: {
 						{
-							TransactionID: uuid.MustParse("5171e74b-93dc-4198-8d14-f8b4731fa9c0"),
-							Merchant:      "Uno",
-							Amount:        100,
-							Time:          currentTime,
+							Id:       uuid.MustParse("5171e74b-93dc-4198-8d14-f8b4731fa9c0"),
+							Merchant: "Uno",
+							Amount:   100,
+							Time:     currentTime,
 						},
 						{
-							TransactionID: uuid.MustParse("5171e74b-93dc-4191-8d14-f8b4731fa9c0"),
-							Merchant:      "dos",
-							Amount:        101,
-							Time:          currentTime.Add(2 * time.Hour),
+							Id:       uuid.MustParse("5171e74b-93dc-4191-8d14-f8b4731fa9c0"),
+							Merchant: "dos",
+							Amount:   101,
+							Time:     currentTime.Add(2 * time.Hour),
 						},
 					},
 				},
@@ -167,7 +167,7 @@ func TestInMemory_GetAccount(t *testing.T) {
 				History: nil,
 				Account: map[int]Account{
 					1: {
-						AccountID:      1,
+						Id:             1,
 						ActiveCard:     true,
 						AvailableLimit: 11,
 					},
